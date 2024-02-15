@@ -4,10 +4,8 @@ public class Main {
         System.out.println(division(12, 3));
 
     }
-
     public static int division(int a, int b) {
         return a / b;
-
     }
 }
 
