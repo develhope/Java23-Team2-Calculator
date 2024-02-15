@@ -1,8 +1,7 @@
 public class Main {
 
     public static void main(String[] args) {
-
-
+        System.out.println(division(12, 3));
         System.out.println(sub(10, 3));
         System.out.println(sum(2, 4));
         System.out.println(multiplication(2, 10));
@@ -14,6 +13,9 @@ public class Main {
         return a - b;
 
     }
+
+    public static int division(int a, int b) {
+        return a / b;
 
     public static int sum(int a, int b) {
         return a + b;
@@ -59,5 +61,6 @@ public class Main {
         if (i == 1) {
             return output;
         } else return "Error";
+
     }
 }
