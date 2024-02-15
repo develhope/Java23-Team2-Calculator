@@ -5,10 +5,10 @@ public class Main {
         System.out.println(sum(2, 4));
         System.out.println(multiplication(2, 10));
     }
-   
+
 
     public static int sum(int a, int b) {
-        return a + b;    
+        return a + b;
 
     }
 
