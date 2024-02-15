@@ -12,9 +12,18 @@ public class Main {
 
     }
 
+    public static int sum(int[] values) {
+        int results = 0;
+        for (int i = 0; i < values.length; i++) {
+            results += values[i];
+        }
+        return results;
+    }
+
     public static int multiplication(int a, int b) {
         return a * b;
     }
+
     public static String operatorKind(String operation) {
         String output = "";
         int i = 0;
