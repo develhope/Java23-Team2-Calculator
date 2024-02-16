@@ -1,8 +1,22 @@
 public class Main {
-
     public static void main(String[] args) {
 
-        System.out.println(calculator("10/6"));
+
+       
+        int num = 25;
+        String result = isEvenOrOdd(num);
+        System.out.println(division(12, 3));
+        System.out.println(sub(10, 3));
+        System.out.println(sum(2, 4));
+        System.out.println(multiplication(2, 10));
+        Exponent exp1= new Exponent(2.0, 3.0);
+        System.out.println(exp1);
+        System.out.println(calculator("1*a"));
+        //la prossima riga stampa il check pari dispari
+        System.out.println(num + " is " + result);
+      
+       System.out.println(calculator("10/6"));
+
     }
 
     public static int sub(int a, int b) {
@@ -57,6 +71,7 @@ public class Main {
         } else return "Error";
     }
 
+
     public static Integer calculator(String operation) {
         // Rimuove gli spazi dalla stringa
         operation = operation.replaceAll(" ", "");
@@ -108,8 +123,13 @@ public class Main {
         }
     }
 
+    public static String isEvenOrOdd(int num) {
+        if (num % 2 == 0) {
+            return "even";
+          } else {
+            return "odd";
+        }
+
+      }
 }
-
-
-
 
