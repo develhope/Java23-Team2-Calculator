@@ -5,6 +5,8 @@ public class Main {
         System.out.println(sub(10, 3));
         System.out.println(sum(2, 4));
         System.out.println(multiplication(2, 10));
+        Exponent exp1= new Exponent(2.0, 3.0);
+        System.out.println(exp1);
 
     }
 
@@ -16,7 +18,7 @@ public class Main {
 
     public static int division(int a, int b) {
         return a / b;
-
+    }
     public static int sum(int a, int b) {
         return a + b;
 
@@ -63,4 +65,6 @@ public class Main {
         } else return "Error";
 
     }
+
+
 }
