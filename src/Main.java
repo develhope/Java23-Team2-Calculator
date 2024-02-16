@@ -1,11 +1,8 @@
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(division(12, 3));
-        System.out.println(sub(10, 3));
-        System.out.println(sum(2, 4));
-        System.out.println(multiplication(2, 10));
-        System.out.println(calculator("1*a"));
+
+        System.out.println(calculator("10/6"));
     }
 
     public static int sub(int a, int b) {
@@ -35,23 +32,23 @@ public class Main {
     public static String operatorKind(String operation) {
         String output = "";
         int i = 0;
-        if (operation.indexOf("+") > 0) {
+        if (operation.indexOf("+") >= 0) {
             output = "sum";
             i++;
         }
-        if (operation.indexOf("-") > 0) {
+        if (operation.indexOf("-") >= 0) {
             output = "sub";
             i++;
         }
-        if (operation.indexOf("*") > 0) {
+        if (operation.indexOf("*") >= 0) {
             output = "multiplication";
             i++;
         }
-        if (operation.indexOf("/") > 0) {
+        if (operation.indexOf("/") >= 0) {
             output = "division";
             i++;
         }
-        if (operation.indexOf("^") > 0) {
+        if (operation.indexOf("^") >= 0) {
             output = "exponents";
             i++;
         }
@@ -62,10 +59,17 @@ public class Main {
 
     public static Integer calculator(String operation) {
         // Rimuove gli spazi dalla stringa
-        operation = operation.replace(" ", "");
-        // Crea un array contenente i vari fattori dell'operazione
-        String[] elementsString = operation.split("[+-/^*]");
-        // Controlla che element[] sia int e se si lo immagizina in un array di interi.
+        operation = operation.replaceAll(" ", "");
+        String operators = operation.replaceAll("[0-9]", "");
+        // Crea un array contenente i vari fattori dell'operazione e uno con gli operatori
+        String[] elementsString = operation.split("[+^*/-]");
+        String[] operatorsArray = new String[elementsString.length];
+        for (int i = 1; i < operatorsArray.length; i++) {
+            String[] temp = operators.split("");
+            operatorsArray[i] = temp[i - 1];
+        }
+        operatorsArray[0] = "+";
+        // Controlla che element[] sia int e se si lo inserisce in un array di interi.
         boolean elementsAreNotInt = false;
         int[] elements = new int[elementsString.length];
         for (int i = 0; i < elementsString.length; i++) {
@@ -76,26 +80,36 @@ public class Main {
                 elementsAreNotInt = true;
             }
         }
-
+//      Se non sono int stampa errore e resituisce null. altrimenti esegue le operazioni
         if (elementsAreNotInt) {
-            System.out.print("Error, looks like something went wrong. Remember that u can just operate one operation at the time. Return: ");
+            System.out.print("Error, looks like something went wrong. Remember that u can just operate on numbers. Return: ");
             return null;
         } else {
-            switch (operatorKind(operation)) {
-                case "sum":
-                    return sum(elements);
-                case "sub":
-                    return sub(elements[0], elements[1]);
-                case "multiplication":
-                    return multiplication(elements[0], elements[1]);
-                case "division":
-                    return division(elements[0], elements[1]);
-                case "error":
+            int result = 0;
+            for (int i = 0; i < elements.length; i++) {
+                String tempOperator = operatorKind(operatorsArray[i]);
+                if (tempOperator.equals("sum")) {
+                    result = sum(result, elements[i]);
+                } else if (tempOperator.equals("sub")) {
+                    result = sub(elements[i], elements[i]);
+
+                } else if (tempOperator.equals("multiplication")) {
+                    result = multiplication(result, elements[i]);
+
+                } else if (tempOperator.equals("division")) {
+                    result = division(result, elements[i]);
+
+                } else {
                     System.out.println("Error, looks like something went wrong. Remember that u can just operate one operation at the time on Int.");
-                    break;
+                    return null;
+                }
             }
+            return result;
         }
-        return null;
     }
 
 }
+
+
+
+
