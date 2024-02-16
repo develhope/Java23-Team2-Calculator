@@ -1,11 +1,15 @@
 public class Main {
-
     public static void main(String[] args) {
+      
+        static int num = 25;
+        static String result = isEvenOrOdd(num);
         System.out.println(division(12, 3));
         System.out.println(sub(10, 3));
         System.out.println(sum(2, 4));
         System.out.println(multiplication(2, 10));
         System.out.println(calculator("1*a"));
+        //la prossima riga stampa il check pari dispari
+        System.out.println(num + " is " + result);
     }
 
     public static int sub(int a, int b) {
@@ -98,4 +102,13 @@ public class Main {
         return null;
     }
 
+    public static String isEvenOrOdd(int num) {
+        if (num % 2 == 0) {
+            return "even";
+          } else {
+            return "odd";
+        }
+
+      }
 }
+
