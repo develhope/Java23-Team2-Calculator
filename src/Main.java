@@ -1,66 +1,32 @@
+import java.util.ArrayList;
+
 public class Main {
 
+    public static ArrayList<Integer> multipleDivision(int dividend, int[] divisors) {
+        ArrayList<Integer> quotients = new ArrayList<>();
+
+        // Per ogni divisore
+        for (int divisor : divisors) {
+            // Esegue la divisione
+            int quotient = dividend / divisor;
+            quotients.add(quotient);
+            // Aggiorna il dividendo con il resto della divisione precedente
+            dividend = dividend % divisor;
+        }
+
+        return quotients;
+    }
+
     public static void main(String[] args) {
-        System.out.println(division(12, 3));
-        System.out.println(sub(10, 3));
-        System.out.println(sum(2, 4));
-        System.out.println(multiplication(2, 10));
+        int dividend = 100;
+        int[] divisors = {2, 5, 10};
 
-    }
+        ArrayList<Integer> results = multipleDivision(dividend, divisors);
 
-
-    public static int sub(int a, int b) {
-        return a - b;
-
-    }
-
-    public static int division(int a, int b) {
-        return a / b;
-
-    public static int sum(int a, int b) {
-        return a + b;
-
-    }
-
-    public static int sum(int[] values) {
-        int results = 0;
-        for (int i = 0; i < values.length; i++) {
-            results += values[i];
+        System.out.println("Risultati della divisione multipla:");
+        for (int i = 0; i < results.size(); i++) {
+            System.out.println("Divisore: " + divisors[i] + ", Quoziente: " + results.get(i));
         }
-        return results;
-    }
-
-    public static int multiplication(int a, int b) {
-        return a * b;
-    }
-
-
-    public static String operatorKind(String operation) {
-        String output = "";
-        int i = 0;
-        if (operation.indexOf("+") > 0) {
-            output = "sum";
-            i++;
-        }
-        if (operation.indexOf("-") > 0) {
-            output = "sub";
-            i++;
-        }
-        if (operation.indexOf("*") > 0) {
-            output = "multiplication";
-            i++;
-        }
-        if (operation.indexOf("/") > 0) {
-            output = "division";
-            i++;
-        }
-        if (operation.indexOf("^") > 0) {
-            output = "exponents";
-            i++;
-        }
-        if (i == 1) {
-            return output;
-        } else return "Error";
-
     }
 }
+
