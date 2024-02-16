@@ -1,4 +1,10 @@
 public class Exponent {
+
+    /*L'oggetto "exponent" ha in commento due Override to String(),
+    così che possiamo decidere, in base a cosa vogliamo dal programma, cosa mandare in stampa.
+    Nel primo vengono mandati in stampa gli elementi e i loro valori, nel secondo viene mandata
+    l'equazione, nel terzo (non in commento) viene mandata l'equazione ed il risultato insieme.*/
+
     private double base;
     private double exp;
 
@@ -16,7 +22,7 @@ public class Exponent {
         return result;
     }
 
-//    @Override
+//    @Override  //manda in stampa i dati e i loro valori (base= a, exp= b)
 //    public String toString() {
 //        return "Exponent{" +
 //                "base=" + base +
@@ -24,14 +30,13 @@ public class Exponent {
 //                '}';
 //    }
 
-//    @Override
+//    @Override  // manda in stampa l'equazione (a^b)
 //    public String toString() {
 //        return base +
-//                " ^ " + exp +
-//                " = ";
+//                " ^ " + exp;
 //    }
 
-        @Override
+        @Override //manda in stampa equazione e risultato (a^b=x)
     public String toString() {
         return base +
                 " ^ " + exp +
