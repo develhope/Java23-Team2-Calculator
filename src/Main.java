@@ -15,7 +15,7 @@ public class Main {
         //la prossima riga stampa il check pari dispari
         System.out.println(num + " is " + result);
       
-       System.out.println(calculator("10/6"));
+       System.out.println(calculator("10+2+3-1"));
 
     }
 
@@ -106,7 +106,7 @@ public class Main {
                 if (tempOperator.equals("sum")) {
                     result = sum(result, elements[i]);
                 } else if (tempOperator.equals("sub")) {
-                    result = sub(elements[i], elements[i]);
+                    result = sub(result, elements[i]);
 
                 } else if (tempOperator.equals("multiplication")) {
                     result = multiplication(result, elements[i]);
