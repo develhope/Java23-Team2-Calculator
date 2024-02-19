@@ -145,26 +145,23 @@ public class Calculus {
         String operation = calc;
         // Rimuove gli spazi dalla stringa
         operation = operation.replaceAll(" ", "");
-        String operators = operation.replaceAll("[0-9]", "");
         // Crea un array contenente i vari fattori dell'operazione e uno con gli operatori
+        String operators = operation.replaceAll("[0-9]", "");
         String[] elementsString = operation.split("[+^*/-]");
-        String[] temp = operators.split("");
         String[] operatorsArray = new String[elementsString.length];
         for (int i = 1; i < operatorsArray.length; i++) {
-            operatorsArray[i] = temp[i];
+            String[] temp = operators.split("");
+            operatorsArray[i] = temp[i - 1];
         }
         operatorsArray[0] = "+";
-        // Controlla che element[] sia int e se si lo inserisce in un array di interi.
         int[] elements = new int[elementsString.length];
-//      Se non sono int stampa errore e resituisce null. altrimenti esegue le operazioni
+        // Controlla che element[] sia int e se si lo inserisce in un array di interi.
         if (isInt(elementsString)) {
             this.isSolvable = true;
             for (int i = 0; i < elementsString.length; i++) {
                 elements[i] = Integer.valueOf(elementsString[i]);
             }
             int result = 0;
-            int operationCounter = 0;
-
             for (int i = 0; i < elements.length; i++) {
                 String tempOperator = operatorKind(operatorsArray[i]);
                 if (tempOperator.equals("multiplication")) {
@@ -180,33 +177,27 @@ public class Calculus {
                     elements[i] = result;
                     operatorsArray[i] = "+";
                 } else if (tempOperator.equals("exponent")) {
-                    result = elements[i - 1];
                     result = exponent(elements[i - 1], elements[i]);
                     elements[i - 1] = 0;
                     elements[i] = result;
                     operatorsArray[i] = "+";
-
                 }
             }
             result = 0;
-            for (int i = 0; i < elements.length - 1; i++) {
+            for (int i = 0; i < elements.length; i++) {
                 String tempOperator = operatorKind(operatorsArray[i]);
                 if (tempOperator.equals("sum")) {
-                    result += elements[i + 1];
+                    result += elements[i];
                 } else if (tempOperator.equals("sub")) {
-                    result -= elements[i + 1];
-                } else {
-                    isSolvable = false;
-                    System.out.println("Error, looks like something went wrong and you cannot get the kind of operation");
+                    result -= elements[i];
                 }
             }
             this.result = result;
         } else {
+            isSolvable = false;
             System.out.println("Error, looks like something went wrong. Remember that u can just operate on numbers. Result is set to 0.");
         }
     }
-
-
 }
 
 
