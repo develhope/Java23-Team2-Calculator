@@ -148,10 +148,10 @@ public class Calculus {
         String operators = operation.replaceAll("[0-9]", "");
         // Crea un array contenente i vari fattori dell'operazione e uno con gli operatori
         String[] elementsString = operation.split("[+^*/-]");
+        String[] temp = operators.split("");
         String[] operatorsArray = new String[elementsString.length];
         for (int i = 1; i < operatorsArray.length; i++) {
-            String[] temp = operators.split("");
-            operatorsArray[i] = temp[i - 1];
+            operatorsArray[i] = temp[i];
         }
         operatorsArray[0] = "+";
         // Controlla che element[] sia int e se si lo inserisce in un array di interi.
@@ -163,22 +163,38 @@ public class Calculus {
                 elements[i] = Integer.valueOf(elementsString[i]);
             }
             int result = 0;
+            int operationCounter = 0;
+
             for (int i = 0; i < elements.length; i++) {
                 String tempOperator = operatorKind(operatorsArray[i]);
-                if (tempOperator.equals("sum")) {
-                    result = sum(result, elements[i]);
-                } else if (tempOperator.equals("sub")) {
-                    result = sub(result, elements[i]);
-
-                } else if (tempOperator.equals("multiplication")) {
-                    result = multiplication(result, elements[i]);
-
+                if (tempOperator.equals("multiplication")) {
+                    result = elements[i - 1];
+                    result *= elements[i];
+                    elements[i - 1] = 0;
+                    elements[i] = result;
+                    operatorsArray[i] = "+";
                 } else if (tempOperator.equals("division")) {
-                    result = division(result, elements[i]);
-
+                    result = elements[i - 1];
+                    result /= elements[i];
+                    elements[i - 1] = 0;
+                    elements[i] = result;
+                    operatorsArray[i] = "+";
                 } else if (tempOperator.equals("exponent")) {
-                    result = exponent(result, elements[i]);
+                    result = elements[i - 1];
+                    result = exponent(elements[i - 1], elements[i]);
+                    elements[i - 1] = 0;
+                    elements[i] = result;
+                    operatorsArray[i] = "+";
 
+                }
+            }
+            result = 0;
+            for (int i = 0; i < elements.length - 1; i++) {
+                String tempOperator = operatorKind(operatorsArray[i]);
+                if (tempOperator.equals("sum")) {
+                    result += elements[i + 1];
+                } else if (tempOperator.equals("sub")) {
+                    result -= elements[i + 1];
                 } else {
                     isSolvable = false;
                     System.out.println("Error, looks like something went wrong and you cannot get the kind of operation");
