@@ -1,5 +1,6 @@
 public class Calculus {
-    private String calc;
+    private final String calc;
+    private boolean isSolvable;
     private int result;
 
     public Calculus(String calc) {
@@ -18,7 +19,12 @@ public class Calculus {
     }
 
     public int getResult() {
-        return result;
+        if (isSolvable) {
+            return result;
+        } else {
+            System.out.println("Warning the original operation is not solvable, return 0.");
+            return 0;
+        }
     }
 
 
@@ -122,6 +128,7 @@ public class Calculus {
         int[] elements = new int[elementsString.length];
 //      Se non sono int stampa errore e resituisce null. altrimenti esegue le operazioni
         if (isInt(elementsString)) {
+            this.isSolvable = true;
             for (int i = 0; i < elementsString.length; i++) {
                 elements[i] = Integer.valueOf(elementsString[i]);
             }
@@ -143,12 +150,13 @@ public class Calculus {
                     result = exponent(result, elements[i]);
 
                 } else {
-                    System.out.println("Error, looks like something went wrong. Remember that u can just operate one operation at the time on Int.");
+                    isSolvable = false;
+                    System.out.println("Error, looks like something went wrong and you cannot get the kind of operation");
                 }
             }
             this.result = result;
         } else {
-            System.out.println("Error, looks like something went wrong. Remember that u can just operate on numbers.");
+            System.out.println("Error, looks like something went wrong. Remember that u can just operate on numbers. Result is set to 0.");
         }
     }
 
