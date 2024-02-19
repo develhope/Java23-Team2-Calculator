@@ -32,9 +32,28 @@ public class Calculus {
         return a - b;
     }
 
+    static int sub(int[] values) {
+        int result = values[0];
+        for (int i = 1; i < values.length; i++) {
+            result -= values[i];
+        }
+        return result;
+    }
+
+
     public static int division(int a, int b) {
         return a / b;
     }
+
+    static int division(int[] values) {
+        int product = values[0];
+
+        for (int i = 1; i < values.length; i++) {
+            product /= values[i];
+        }
+        return product;
+    }
+
 
     public static int sum(int a, int b) {
         return a + b;
@@ -48,9 +67,20 @@ public class Calculus {
         return results;
     }
 
+
     public static int multiplication(int a, int b) {
         return a * b;
     }
+
+    static int multiplication(int[] values) {
+        int product = 1;
+
+        for (int i = 0; i < values.length; i++) {
+            product *= values[i];
+        }
+        return product;
+    }
+
 
     public static String operatorKind(String operation) {
         String output = "";
