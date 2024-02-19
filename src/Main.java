@@ -1,8 +1,15 @@
+
 import java.util.ArrayList;
 
 public class Main {
+    public static void main(String[] args) {
+        Calculus calculus = new Calculus("2+3^3");
+        System.out.println();
+        System.out.println(calculus.getCalc());
+        System.out.println(calculus.getResult());
 
-    public static ArrayList<Integer> multipleDivision(int dividend, int[] divisors) {
+    }
+  public static ArrayList<Integer> multipleDivision(int dividend, int[] divisors) {
         ArrayList<Integer> quotients = new ArrayList<>();
 
         // Per ogni divisore
@@ -29,4 +36,3 @@ public class Main {
         }
     }
 }
-
