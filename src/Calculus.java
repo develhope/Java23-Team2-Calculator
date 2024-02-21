@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Calculus {
     private final String calc;
     private boolean isSolvable;
@@ -127,70 +129,80 @@ public class Calculus {
 
     }
 
-    public static boolean isInt(String[] array) {
-        boolean isInt = true;
-        for (int i = 0; i < array.length; i++) {
-            if (isInt) {
-                try {
-                    Integer.parseInt(array[i]);
-                } catch (Exception e) {
-                    isInt = false;
-                }
-            }
-        }
-        return isInt;
-    }
 
     public void solve() {
-        String operation = calc;
-        // Rimuove gli spazi dalla stringa
-        operation = operation.replaceAll(" ", "");
-        String operators = operation.replaceAll("[0-9]", "");
-        // Crea un array contenente i vari fattori dell'operazione e uno con gli operatori
-        String[] elementsString = operation.split("[+^*/-]");
-        String[] operatorsArray = new String[elementsString.length];
-        for (int i = 1; i < operatorsArray.length; i++) {
-            String[] temp = operators.split("");
-            operatorsArray[i] = temp[i - 1];
-        }
-        operatorsArray[0] = "+";
-        // Controlla che element[] sia int e se si lo inserisce in un array di interi.
-        int[] elements = new int[elementsString.length];
-//      Se non sono int stampa errore e resituisce null. altrimenti esegue le operazioni
-        if (isInt(elementsString)) {
-            this.isSolvable = true;
-            for (int i = 0; i < elementsString.length; i++) {
-                elements[i] = Integer.valueOf(elementsString[i]);
-            }
-            int result = 0;
-            for (int i = 0; i < elements.length; i++) {
-                String tempOperator = operatorKind(operatorsArray[i]);
-                if (tempOperator.equals("sum")) {
-                    result = sum(result, elements[i]);
-                } else if (tempOperator.equals("sub")) {
-                    result = sub(result, elements[i]);
-
-                } else if (tempOperator.equals("multiplication")) {
-                    result = multiplication(result, elements[i]);
-
-                } else if (tempOperator.equals("division")) {
-                    result = division(result, elements[i]);
-
-                } else if (tempOperator.equals("exponent")) {
-                    result = exponent(result, elements[i]);
-
-                } else {
-                    isSolvable = false;
-                    System.out.println("Error, looks like something went wrong and you cannot get the kind of operation");
-                }
-            }
-            this.result = result;
-        } else {
+        ArrayList<Integer> values;
+        try {
+            values = toValuesList(calc);
+            isSolvable = true;
+        } catch (Exception e) {
             System.out.println("Error, looks like something went wrong. Remember that u can just operate on numbers. Result is set to 0.");
+            isSolvable = false;
+            return;
         }
+        ArrayList<String> operators = toOperatorsList(calc);
+        int result = 0;
+        for (int i = 0; i < values.size(); i++) {
+            String tempOperator = operatorKind(operators.get(i));
+
+            if (tempOperator.equals("multiplication")) {
+                result = values.get(i - 1);
+                result *= values.get(i);
+                values.set(i, result);
+                values.remove(i - 1);
+                operators.remove(i);
+                i--;
+            } else if (tempOperator.equals("division")) {
+                result = values.get(i - 1);
+                result /= values.get(i);
+                values.set(i, result);
+                values.remove(i - 1);
+                operators.remove(i);
+                i--;
+            } else if (tempOperator.equals("exponent")) {
+                result = exponent(values.get(i - 1), values.get(i));
+                values.set(i, result);
+                values.remove(i - 1);
+                operators.remove(i);
+                i--;
+            }
+        }
+        result = 0;
+        for (int i = 0; i < values.size(); i++) {
+            String tempOperator = operatorKind(operators.get(i));
+            if (tempOperator.equals("sum")) {
+                result += values.get(i);
+            } else if (tempOperator.equals("sub")) {
+                result -= values.get(i);
+            }
+        }
+        this.result = result;
+
+
     }
 
+    private static ArrayList<Integer> toValuesList(String calc) {
+        ArrayList<Integer> values = new ArrayList<Integer>();
+        calc = calc.replaceAll(" ", "");
+        String[] elementsString = calc.split("[+^*/-]");
+        for (int i = 0; i < elementsString.length; i++) {
+            values.add(Integer.valueOf(elementsString[i]));
+        }
+        return values;
+    }
 
+    private static ArrayList<String> toOperatorsList(String calc) {
+        ArrayList<String> values = new ArrayList<String>();
+        calc = calc.replaceAll(" ", "");
+        calc = calc.replaceAll("[0-9]", "");
+        String[] elementsString = calc.split("");
+        values.add("+");
+        for (int i = 0; i < elementsString.length; i++) {
+            values.add(elementsString[i]);
+        }
+        return values;
+    }
 }
+
 
 

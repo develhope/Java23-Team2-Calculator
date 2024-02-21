@@ -1,11 +1,6 @@
-
-import java.util.ArrayList;
-
 public class Main {
     public static void main(String[] args) {
-        Calculus calculus = new Calculus("2+5-1");
-        int [] cavolo = {100,10,2};
-        System.out.println();
-        System.out.println(Calculus.division(cavolo));
+        Calculus calculus2 = new Calculus("1+3*2/3^2");
+        System.out.println(calculus2);
     }
 }
