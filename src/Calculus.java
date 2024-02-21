@@ -144,30 +144,7 @@ public class Calculus {
         int result = 0;
         for (int i = 0; i < values.size(); i++) {
             String tempOperator = operatorKind(operators.get(i));
-//            switch (tempOperator){
-//                case "multiplication":
-//                    result = values.get(i - 1);
-//                    result *= values.get(i);
-//                    values.set(i, result);
-//                    values.remove(i - 1);
-//                    operators.remove(i);
-//                    i--;
-//                case "division":
-//                    result = values.get(i - 1);
-//                    result /= values.get(i);
-//                    values.set(i, result);
-//                    values.remove(i - 1);
-//                    operators.remove(i);
-//                    i--;
-//                case "exponent":
-//                    result = exponent(values.get(i - 1), values.get(i));
-//                    values.set(i, result);
-//                    values.remove(i - 1);
-//                    operators.remove(i);
-//                    i--;
-//                default:
-//
-//            }
+
             if (tempOperator.equals("multiplication")) {
                 result = values.get(i - 1);
                 result *= values.get(i);
