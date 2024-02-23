@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Calculus {
     public static void main(String[] args) {
-        Calculus test1 = new Calculus("10/2/5");
+        Calculus test1 = new Calculus("10/2/5*2/2*1");
         System.out.println(test1);
         //test1.calcs.add(new Division(10, 1));
         System.out.println(test1.calcs.size());
@@ -17,6 +17,13 @@ public class Calculus {
     private boolean isSolvable;
     private int result;
 
+    public void solve() {
+        ArrayList<Integer> results = new ArrayList<>(calcs.size());
+        for (int i = 0; i < results.size(); i++){
+            if (calcs.get(i).)
+        }
+
+    }
 
     public Calculus(String calc) {
 
@@ -65,7 +72,12 @@ public class Calculus {
                     calcs.add(new Division(values.get(0), values.get(1)));
                     values.remove(0);
                     operators.remove(0);
-
+                    break;
+                case "*":
+                    calcs.add(new Multiplication(values.get(0), values.get(1)));
+                    values.remove(0);
+                    operators.remove(0);
+                    break;
                 default:
             }
 
