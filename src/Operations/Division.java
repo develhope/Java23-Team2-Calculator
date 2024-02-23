@@ -20,14 +20,14 @@ public class Division extends Calc {
     public Division(int a, int b) {
         this.a = a;
         this.b = b;
-        // this.operationKind = OperationKind.DIVISION;
+        this.operationKind = OperationKind.DIVISION;
         solve();
     }
 
     public Division(int[] array) {
         this.array = array;
         this.isArray = true;
-        // this.operationKind = OperationKind.DIVISION;
+        this.operationKind = OperationKind.DIVISION;
         solve();
     }
 

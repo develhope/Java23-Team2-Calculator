@@ -18,12 +18,14 @@ public class Multiplication extends Calc{
     public Multiplication(int a, int b) {
         this.a = a;
         this.b = b;
+        this.operationKind = OperationKind.MULTIPLICATION;
         solve();
     }
 
     public Multiplication(int[] array) {
         this.array = array;
         this.isArray = true;
+        this.operationKind = OperationKind.MULTIPLICATION;
         solve();
     }
 
