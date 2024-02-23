@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class Calculus {
     public static void main(String[] args) {
-        Calculus test1 = new Calculus("1/1");
+        Calculus test1 = new Calculus("10/2/5");
         System.out.println(test1);
-        test1.calcs.add(new Division(10, 1));
+        //test1.calcs.add(new Division(10, 1));
         System.out.println(test1.calcs.size());
     }
 
@@ -30,7 +30,7 @@ public class Calculus {
 
     @Override
     public String toString() {
-        return input + " = " + result;
+        return calcs.toString() + " = " + result;
     }
 
     public String getInput() {
@@ -59,14 +59,15 @@ public class Calculus {
     public void toCalcArray() {
         ArrayList<Integer> values = toValuesList(input);
         ArrayList<String> operators = toOperatorsList(input);
-        for (int i = 0; i > operators.size(); i++) {
-            if (Objects.equals(operators.get(i), "/"))
-                calcs.add(new Division(values.get(i), values.get(i + 1)));
-            values.remove(i);
-            values.remove(i);
-            operators.remove(i);
-            i--;
+        while (operators.size() > 0) {
+            switch (operators.get(0)) {
+                case "/":
+                    calcs.add(new Division(values.get(0), values.get(1)));
+                    values.remove(0);
+                    operators.remove(0);
 
+                default:
+            }
 
         }
     }
