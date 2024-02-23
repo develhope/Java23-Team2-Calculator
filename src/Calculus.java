@@ -38,20 +38,6 @@ public class Calculus {
 
 
 
-    public static int multiplication(int a, int b) {
-        return a * b;
-    }
-
-    static int multiplication(int[] values) {
-        int product = 1;
-
-        for (int i = 0; i < values.length; i++) {
-            product *= values[i];
-        }
-        return product;
-    }
-
-
     public static String operatorKind(String operation) {
         String output = "";
         int i = 0;
