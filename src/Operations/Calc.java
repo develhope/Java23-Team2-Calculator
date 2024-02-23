@@ -6,7 +6,7 @@ public abstract class Calc {
     protected boolean isArray;
 
     //Enum che identifica il tipo dell'operazione viene settato dalle child con costructor
-    // protected OperationKind operationKind;
+    protected OperationKind operationKind;
 
     //Viene chiamato nel costruttore, capisce se è un array o no e risolve l'operazione e settando result
     abstract void solve();
