@@ -29,21 +29,6 @@ public class Calculus {
         }
     }
 
-
-    public static int division(int a, int b) {
-        return a / b;
-    }
-
-    static int division(int[] values) {
-        int product = values[0];
-
-        for (int i = 1; i < values.length; i++) {
-            product /= values[i];
-        }
-        return product;
-    }
-
-
     public static int sum(int a, int b) {
         return a + b;
     }
