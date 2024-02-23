@@ -1,23 +1,30 @@
+import Operations.Calc;
+import Operations.Division;
+
 import java.util.ArrayList;
 
 public class Calculus {
-    private final String calc;
+     ArrayList<Calc> calcs = new ArrayList<>();
+    private final String input;
     private boolean isSolvable;
     private int result;
 
+
     public Calculus(String calc) {
 
-        this.calc = calc;
-        this.solve();
+        input = calc;
+        isSolvable();
+        toCalcArray();
+        //this.solve();
     }
 
     @Override
     public String toString() {
-        return calc + " = " + result;
+        return input + " = " + result;
     }
 
-    public String getCalc() {
-        return calc;
+    public String getInput() {
+        return input;
     }
 
     public int getResult() {
@@ -29,17 +36,6 @@ public class Calculus {
         }
     }
 
-    public static int sum(int a, int b) {
-        return a + b;
-    }
-
-    public static int sum(int[] values) {
-        int results = 0;
-        for (int i = 0; i < values.length; i++) {
-            results += values[i];
-        }
-        return results;
-    }
 
 
     public static int multiplication(int a, int b) {
@@ -102,56 +98,71 @@ public class Calculus {
     }
 
 
-    public void solve() {
-        ArrayList<Integer> values;
-        try {
-            values = toValuesList(calc);
-            isSolvable = true;
-        } catch (Exception e) {
-            System.out.println("Error, looks like something went wrong. Remember that u can just operate on numbers. Result is set to 0.");
-            isSolvable = false;
-            return;
-        }
-        ArrayList<String> operators = toOperatorsList(calc);
-        int result = 0;
-        for (int i = 0; i < values.size(); i++) {
-            String tempOperator = operatorKind(operators.get(i));
+   public void toCalcArray(){
+       ArrayList<Integer> values = toValuesList(input);
+       ArrayList<String> operators = toOperatorsList(input);
+       for (int i = 0; i>operators.size(); i++){
+           switch (operators.get(i)){
+               case "/":
+                   calcs.add(new Division(values.get(i),values.get(i+1)));
+                   values.remove(i);
+                   values.remove(i);
+                   operators.remove(i);
+                   i--;
+           }
 
-            if (tempOperator.equals("multiplication")) {
-                result = values.get(i - 1);
-                result *= values.get(i);
-                values.set(i, result);
-                values.remove(i - 1);
-                operators.remove(i);
-                i--;
-            } else if (tempOperator.equals("division")) {
-                result = values.get(i - 1);
-                result /= values.get(i);
-                values.set(i, result);
-                values.remove(i - 1);
-                operators.remove(i);
-                i--;
-            } else if (tempOperator.equals("exponent")) {
-                result = exponent(values.get(i - 1), values.get(i));
-                values.set(i, result);
-                values.remove(i - 1);
-                operators.remove(i);
-                i--;
-            }
-        }
-        result = 0;
-        for (int i = 0; i < values.size(); i++) {
-            String tempOperator = operatorKind(operators.get(i));
-            if (tempOperator.equals("sum")) {
-                result += values.get(i);
-            } else if (tempOperator.equals("sub")) {
-                result -= values.get(i);
-            }
-        }
-        this.result = result;
-
-
-    }
+       }
+   }
+  public void isSolvable(){
+      try {
+          toValuesList(input);
+          isSolvable = true;
+      } catch (Exception e) {
+          System.out.println("Error, looks like something went wrong. Remember that u can just operate on numbers. Result is set to 0.");
+          isSolvable = false;
+      }
+  }
+//    public void solve() {
+//
+//        int result = 0;
+//        for (int i = 0; i < values.size(); i++) {
+//            String tempOperator = operatorKind(operators.get(i));
+//
+//            if (tempOperator.equals("multiplication")) {
+//                result = values.get(i - 1);
+//                result *= values.get(i);
+//                values.set(i, result);
+//                values.remove(i - 1);
+//                operators.remove(i);
+//                i--;
+//            } else if (tempOperator.equals("division")) {
+//                result = values.get(i - 1);
+//                result /= values.get(i);
+//                values.set(i, result);
+//                values.remove(i - 1);
+//                operators.remove(i);
+//                i--;
+//            } else if (tempOperator.equals("exponent")) {
+//                result = exponent(values.get(i - 1), values.get(i));
+//                values.set(i, result);
+//                values.remove(i - 1);
+//                operators.remove(i);
+//                i--;
+//            }
+//        }
+//        result = 0;
+//        for (int i = 0; i < values.size(); i++) {
+//            String tempOperator = operatorKind(operators.get(i));
+//            if (tempOperator.equals("sum")) {
+//                result += values.get(i);
+//            } else if (tempOperator.equals("sub")) {
+//                result -= values.get(i);
+//            }
+//        }
+//        this.result = result;
+//
+//
+//    }
 
     private static ArrayList<Integer> toValuesList(String calc) {
         ArrayList<Integer> values = new ArrayList<Integer>();
