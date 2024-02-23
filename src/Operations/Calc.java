@@ -14,4 +14,8 @@ public abstract class Calc {
     int getResult() {
         return result;
     }
+
+    public OperationKind getOperationKind() {
+        return operationKind;
+    }
 }

@@ -9,6 +9,8 @@ public class Calculus {
         System.out.println(test1);
         //test1.calcs.add(new Division(10, 1));
         System.out.println(test1.calcs.size());
+        test1.solve();
+        System.out.println(test1);
     }
 
 
@@ -18,10 +20,6 @@ public class Calculus {
     private int result;
 
     public void solve() {
-        ArrayList<Integer> results = new ArrayList<>(calcs.size());
-        for (int i = 0; i < results.size(); i++){
-            if (calcs.get(i).)
-        }
 
     }
 
@@ -31,7 +29,6 @@ public class Calculus {
         isSolvable();
         if (isSolvable) {
             toCalcArray();
-            //this.solve();
         }
     }
 
