@@ -1,7 +1,7 @@
 package Operations;
 
-public class Multiplication extends Calc{
-   //TEST per la moltiplicazione
+public class Multiplication extends Calc {
+    //TEST per la moltiplicazione
     public static void main(String[] args) {
         Calc test1 = new Multiplication(41, 212);
         System.out.println(test1);
