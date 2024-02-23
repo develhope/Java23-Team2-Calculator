@@ -1,11 +1,13 @@
 package Operations;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Calculus {
     public static void main(String[] args) {
-        Calculus test1 = new Calculus("1a/1");
+        Calculus test1 = new Calculus("1/1");
         System.out.println(test1);
+        test1.calcs.add(new Division(10, 1));
         System.out.println(test1.calcs.size());
     }
 
@@ -58,14 +60,13 @@ public class Calculus {
         ArrayList<Integer> values = toValuesList(input);
         ArrayList<String> operators = toOperatorsList(input);
         for (int i = 0; i > operators.size(); i++) {
-            switch (operators.get(i)) {
-                case "/":
-                    calcs.add(new Division(values.get(i), values.get(i + 1)));
-                    values.remove(i);
-                    values.remove(i);
-                    operators.remove(i);
-                    i--;
-            }
+            if (Objects.equals(operators.get(i), "/"))
+                calcs.add(new Division(values.get(i), values.get(i + 1)));
+            values.remove(i);
+            values.remove(i);
+            operators.remove(i);
+            i--;
+
 
         }
     }
@@ -85,7 +86,6 @@ public class Calculus {
         calc = calc.replaceAll(" ", "");
         calc = calc.replaceAll("[0-9]", "");
         String[] elementsString = calc.split("");
-        values.add("+");
         for (int i = 0; i < elementsString.length; i++) {
             values.add(elementsString[i]);
         }
