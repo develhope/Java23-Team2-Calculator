@@ -1,7 +1,14 @@
 package Operations;
 
-public interface Calc {
-    String toString();
+public abstract class Calc {
+    protected int a, b, result;
+    protected int[] array;
+    protected boolean isArray;
+    // protected OperationKind operationKind;
 
-    int solve();
+    abstract void solve();
+
+    int getResult() {
+        return result;
+    }
 }
