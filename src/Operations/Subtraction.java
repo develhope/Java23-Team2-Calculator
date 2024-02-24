@@ -1,18 +1,49 @@
 package Operations;
 
-public class Subtraction {
+public class Subtraction extends Calc {
+    public static void main(String[] args) {
 
-    //Metodo sottrazione a più elementi
-    public static int sub(int a, int b) {
-        return a - b;
     }
 
-    //Metodo sottrazione degli elementi di un array
-    public static int sub(int[] values) {
-        int result = values[0];
-        for (int i = 1; i < values.length; i++) {
-            result -= values[i];
+    public Subtraction(int a, int b) {
+        this.a = a;
+        this.b = b;
+        this.operationKind = OperationKind.SUBTRACTION;
+        solve();
+    }
+
+    public Subtraction(int[] array) {
+        this.array = array;
+        this.isArray = true;
+        this.operationKind = OperationKind.SUBTRACTION;
+        solve();
+    }
+
+    @Override
+    public void solve() {
+        if (isArray) {
+            int product = array[0];
+            for (int i = 1; i < array.length; i++) {
+                product -= array[i];
+            }
+            result = product;
+            return;
         }
-        return result;
+        result = a - b;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        if (isArray) {
+            output.append(array[0]);
+            for (int i = 1; i < array.length; i++) {
+                output.append(" - " + array[i]);
+            }
+        } else {
+            output.append(a + " - " + b);
+        }
+        output.append(" = " + result);
+        return output.toString();
     }
 }
