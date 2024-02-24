@@ -1,3 +1,5 @@
+import Operations.Exponents;
+
 import java.util.ArrayList;
 
 public class Calculus {
@@ -70,13 +72,7 @@ public class Calculus {
         } else return "Error";
     }
 
-    public static int exponent(int base, int exp) {
-        int result = 1;
-        for (int i = 0; i < exp; i++) {
-            result *= base;
-        }
-        return result;
-    }
+
 
     public static String isEvenOrOdd(int num) {
         if (num % 2 == 0) {
@@ -118,7 +114,7 @@ public class Calculus {
                 operators.remove(i);
                 i--;
             } else if (tempOperator.equals("exponent")) {
-                result = exponent(values.get(i - 1), values.get(i));
+                result = Exponents.exponent(values.get(i - 1), values.get(i));
                 values.set(i, result);
                 values.remove(i - 1);
                 operators.remove(i);
