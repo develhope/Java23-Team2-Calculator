@@ -31,17 +31,17 @@ public class OldCalculus {
         }
     }
 
-    public static int sum(int a, int b) {
-        return a + b;
-    }
-
-    public static int sum(int[] values) {
-        int results = 0;
-        for (int i = 0; i < values.length; i++) {
-            results += values[i];
-        }
-        return results;
-    }
+//    public static int sum(int a, int b) {
+//        return a + b;
+//    }
+//
+//    public static int sum(int[] values) {
+//        int results = 0;
+//        for (int i = 0; i < values.length; i++) {
+//            results += values[i];
+//        }
+//        return results;
+//    }
 
 
     public static String operatorKind(String operation) {
