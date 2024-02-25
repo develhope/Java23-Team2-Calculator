@@ -9,10 +9,12 @@ public class Calculus {
         System.out.println(new Calculus("6/2"));
         System.out.println(new Calculus("3^2"));
         System.out.println(new Calculus("22-9"));
+        System.out.println(new Calculus("22+9+1"));
         System.out.println(new Calculus("22-6/2"));
         System.out.println(new Calculus("22-3*2"));
         System.out.println(new Calculus("22-3^2"));
         System.out.println(new Calculus("6/2-3^2"));
+        System.out.println(new Calculus("6-3*2+1"));
         System.out.println(new Calculus("3*2-3"));
         System.out.println(new Calculus("3^2-9"));
         System.out.println(new Calculus("a2*2"));
@@ -23,6 +25,11 @@ public class Calculus {
     private final String input;
     private static boolean isSolvable;
     private int result;
+
+    public Calculus(String calc) {
+        input = calc;
+        solve();
+    }
 
     private void solve() {
         ArrayList<Calc> calcs = new ArrayList<>();
@@ -48,16 +55,20 @@ public class Calculus {
         }
         for (int i = 0; i < calcs.size(); ) {
             if (calcs.get(i).operationKind.equals(OperationKind.SUM) || calcs.get(i).operationKind.equals(OperationKind.SUBTRACTION)) {
-                result += calcs.get(i).result;
-                i++;
+                if (calcs.size() == 1) {
+                    result = calcs.get(i).result;
+                    return;
+                }
+                if (i > 0) {
+                    calcs.get(i - 1).setB(calcs.get(i).result);
+                }
+                if (i < calcs.size() - 1) {
+                    calcs.get(i + 1).setA(calcs.get(i).result);
+                }
+                calcs.remove(i);
             }
         }
 
-    }
-
-    public Calculus(String calc) {
-        input = calc;
-        solve();
     }
 
     @Override
