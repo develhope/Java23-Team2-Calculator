@@ -2,12 +2,12 @@ import Operations.Exponents;
 
 import java.util.ArrayList;
 
-public class Calculus {
+public class OldCalculus {
     private final String calc;
     private boolean isSolvable;
     private int result;
 
-    public Calculus(String calc) {
+    public OldCalculus(String calc) {
 
         this.calc = calc;
         this.solve();
