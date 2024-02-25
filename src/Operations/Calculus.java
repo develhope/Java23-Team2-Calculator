@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Calculus {
     public static void main(String[] args) {
-        Calculus test1 = new Calculus("10/2/5*2/2*1");
+        Calculus test1 = new Calculus("10+2/5*2/2*1");
         System.out.println(test1);
         //test1.calcs.add(new Division(10, 1));
         System.out.println(test1.calcs.size());
@@ -20,6 +20,23 @@ public class Calculus {
     private int result;
 
     public void solve() {
+//        ArrayList<Integer> results = new ArrayList<>(calcs.size());
+        for (int i = 0; i < calcs.size(); i++) {
+            if (calcs.get(i).getOperationKind() == OperationKind.DIVISION && i == 0 || calcs.get(i).getOperationKind() == OperationKind.MULTIPLICATION && i == 0) {
+                int tempResult = calcs.get(i).result;
+                calcs.get(i + 1).setA(tempResult);
+                calcs.remove(i);
+            }
+            if (calcs.get(i).getOperationKind() == OperationKind.DIVISION && i > 0 && 0 < calcs.size() || calcs.get(i).getOperationKind() == OperationKind.MULTIPLICATION && i > 0 && 0 < calcs.size()) {
+                int tempResult = calcs.get(i).result;
+                calcs.get(i - 1).setB(tempResult);
+                calcs.get(i + 1).setA(tempResult);
+                calcs.remove(i);
+                i--;
+
+            }
+        }
+//        System.out.println(results);
 
     }
 
@@ -29,6 +46,7 @@ public class Calculus {
         isSolvable();
         if (isSolvable) {
             toCalcArray();
+            //this.solve();
         }
     }
 

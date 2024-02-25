@@ -14,6 +14,13 @@ public abstract class Calc {
     int getResult() {
         return result;
     }
+    public void setA(int a){
+        this.a =a;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
 
     public OperationKind getOperationKind() {
         return operationKind;
