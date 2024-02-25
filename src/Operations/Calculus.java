@@ -113,8 +113,7 @@ public class Calculus {
                     operators.remove(0);
                     break;
                 case "+":
-                    System.out.println("Not implemented operation yet");
-                   // array.add(new Sum(values.get(0), values.get(1)));
+                    array.add(new Sum(values.get(0), values.get(1)));
                     values.remove(0);
                     operators.remove(0);
                     break;
